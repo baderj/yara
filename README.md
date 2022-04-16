@@ -1,5 +1,5 @@
-[![linting](https://github.com/baderj/yara/workflows/linting/badge.svg)](https://github.com/baderj/yara/actions/workflows/linting.yml)
-[![Package Yara Rules](https://github.com/baderj/yara/actions/workflows/concat.yml/badge.svg)](https://github.com/baderj/yara/actions/workflows/concat.yml)
+[![Linting](https://github.com/baderj/yara/workflows/Linting/badge.svg)](https://github.com/baderj/yara/actions/workflows/linting.yml)
+[![Package Yara Rules](https://github.com/baderj/yara/workflows/Package%20Yara%20Rules/badge.svg)](https://github.com/baderj/yara/actions/workflows/concat.yml)
 # yara
 Repository of self-written YARA rules. Use at your own risk.
 

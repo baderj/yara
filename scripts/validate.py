@@ -7,6 +7,8 @@ from typing import Any, Dict, List, Optional
 
 import plyara
 
+nr_of_errors = 0
+
 
 class Level(Enum):
     DEBUG = "debug"
@@ -157,7 +159,9 @@ def check_path(path: Path, recursive: bool = False):
 
 
 def log(path: Path, msg: str, line: int = 1, col: int = 1, level: Level = Level.ERROR):
-
+    if level in [Level.ERROR, Level.WARNING]:
+        global nr_of_errors
+        nr_of_errors += 1
     print(f"{path.resolve()}:{line}:{col}:{level.value}:{msg}")
 
 
@@ -169,8 +173,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "-r", "--recursive", help="recursively scan directory", action="store_true"
     )
-    parser.add_argument(
-        "-v", "--verbose", help="print debug message", action="store_true"
-    )
     args = parser.parse_args()
     check_path(path=Path(args.path), recursive=args.recursive)
+    if nr_of_errors:
+        exit(1)

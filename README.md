@@ -1,2 +1,1 @@
-# yara
-Repository of my YARA rules
+Repository of self-written YARA rules. Use at your own risk.

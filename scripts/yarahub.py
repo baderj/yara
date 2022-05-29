@@ -64,7 +64,7 @@ def overwrite_meta(src: Path, dst: Path, meta: Dict[str, str]):
             if not i:
                 m = re.search("rule\s+([^ ]*)", line)
                 rule_name = m.group(1)
-                uid = meta["yarahub_uuid"].split("-")[0]
+                uid = meta["yarahub_uuid"][0:4]
                 line = f"rule {rule_name}_{uid} {{"
             w.write(f"{line}\n")
 

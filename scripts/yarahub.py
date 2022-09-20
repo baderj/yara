@@ -88,7 +88,7 @@ def map_key_to_yarahub(
             break
     else:
         if alert:
-            msg = f"found no {src_key}, which is required"
+            msg = f"found no {src_key}, which is required, meta is:\n:{meta}"
             logger.error(msg)
             raise ValueError(msg)
 
@@ -105,7 +105,8 @@ def enrich_meta(meta: Dict[str, str]):
     set_if_not_set(meta, "yarahub_author_twitter", "@viql")
     set_if_not_set(meta, "yarahub_author_email", "yara@bin.re")
 
-    map_key_to_yarahub(meta, "hash", "yarahub_reference_md5", alert=True, length=32)
+    map_key_to_yarahub(meta, "hash", "yarahub_reference_md5",
+                       alert=True, length=32)
     map_key_to_yarahub(meta, "reference", "yarahub_reference_link")
 
     set_if_not_set(meta, "yarahub_uuid", str(uuid.uuid4()))
@@ -121,7 +122,7 @@ def parse_rule(src: Path, dst: Path):
     except ValueError:
         return
     base = os.path.dirname(dst)
-    if not os.path.isdir(base):
+    if base and not os.path.isdir(base):
         os.makedirs(base)
     overwrite_meta(src, dst, meta)
 
@@ -164,4 +165,5 @@ if __name__ == "__main__":
         "-r", "--recursive", help="recursively scan directory", action="store_true"
     )
     args = parser.parse_args()
-    check_path(src=Path(args.src), dst=Path(args.dst), recursive=args.recursive)
+    check_path(src=Path(args.src), dst=Path(
+        args.dst), recursive=args.recursive)

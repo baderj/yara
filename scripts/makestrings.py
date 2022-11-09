@@ -9,6 +9,7 @@ def run(path: str, prefix: str = "string", wide: bool = False):
             if not line:
                 continue
             w = " wide" if wide else ""
+            line = line.replace('"', "\\\"")
             pattern = f'${prefix}_{nr} = "{line}"{w}'
             print(pattern)
             nr += 1

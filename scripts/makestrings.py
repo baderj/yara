@@ -12,6 +12,7 @@ def run(path: str, prefix: str = "string", wide: bool = False):
         if not line:
             continue
         w = " wide" if wide else ""
+        line = line.replace("\\", "\\\\")
         line = line.replace('"', "\\\"")
         nrf = str(nr).zfill(int(math.log10(total)+1))
         pattern = f'${prefix}_{nrf} = "{line}"{w}'

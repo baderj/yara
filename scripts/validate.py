@@ -112,7 +112,7 @@ def validate_meta(rule: Dict[str, Any], **_) -> List[str]:
             res.append(f"invalid date: {e}")
     if "version" in meta:
         v = meta["version"]
-        m = re.match(r"^v\d\.\d$", v)
+        m = re.match(r"^v\d\.\d+$", v)
         if not m:
             res.append(f"invalid version: '{v}")
 

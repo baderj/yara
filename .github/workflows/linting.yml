@@ -15,9 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
-          cache: 'pip'
       - run: pip install -r requirements.txt
         working-directory: ./scripts
       - run: python3 validate.py ../rules -r
